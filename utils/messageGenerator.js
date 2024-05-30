@@ -34,6 +34,38 @@ function generateTagMessage(action) {
   }
 }
 
+/**
+ *
+ * @param {*} action
+ * @returns {string} 訊息
+ */
+function generateAddIdentityMemberToCardMessage(action) {
+  const {
+    TRELLO_ACCOUNT_TAG_ID: tagId
+  } = process.env;
+
+  const actionMemberUserName = action.member.username || '';
+  // tagId 幫我刪除@字元
+  const userName = tagId.replace('@', '');
+
+  if (actionMemberUserName.includes(userName)) {
+    // 生成訊息的程式碼
+    const updateDate = new Date(action.date).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+
+    const message =
+      `Oh Fuck, 您被加入卡片了！
+      標題：${action.data.card.name}
+      連結：https://trello.com/c/${action.data.card.shortLink}
+      活動類型：${action.type}
+      時間：${updateDate}
+      `
+      ;
+    return message;
+  } else {
+    return null;
+  }
+}
+
 
 
 /**
@@ -55,5 +87,6 @@ function generateActivityMessage(action) {
 
 export {
   generateTagMessage,
+  generateAddIdentityMemberToCardMessage,
   generateActivityMessage
 };

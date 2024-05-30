@@ -1,6 +1,15 @@
-import { generateTagMessage, generateActivityMessage } from '../utils/messageGenerator.js';
+import {
+  generateTagMessage
+  , generateAddIdentityMemberToCardMessage
+  , generateActivityMessage
+} from '../utils/messageGenerator.js';
 
 
+/**
+ * 取得Trello Message by action
+ * @param {*} action
+ * @returns
+ */
 function getTrelloActionMessage(action) {
   let messageFunction;
   switch (action.type) {
@@ -10,9 +19,13 @@ function getTrelloActionMessage(action) {
     case 'commentCard':
       messageFunction = generateTagMessage;
       break;
+    case 'addMemberToCard':
+      messageFunction = generateAddIdentityMemberToCardMessage;
+      break;
     // 更多的 case...
     default:
-      messageFunction = generateActivityMessage;
+      return null;
+      // messageFunction = generateActivityMessage;
       break;
   }
 
@@ -23,6 +36,5 @@ function getTrelloActionMessage(action) {
 
 export {
   getTrelloActionMessage
-
 };
 
