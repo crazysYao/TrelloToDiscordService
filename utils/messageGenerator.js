@@ -1,4 +1,6 @@
-// import env from 'dotenv';
+import { convertToTaipeiTime } from './dateUtils.js';
+
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -17,7 +19,7 @@ function generateTagMessage(action) {
 
   if (commentText.includes(tagId) || cardDesc.includes(tagId)) {
     // 生成訊息的程式碼
-    const updateDate = new Date(action.date).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+    const updateDate = convertToTaipeiTime(action.date);
 
     const message =
       `Oh Fuck, 您被標記了！
@@ -50,7 +52,7 @@ function generateAddIdentityMemberToCardMessage(action) {
 
   if (actionMemberUserName.includes(userName)) {
     // 生成訊息的程式碼
-    const updateDate = new Date(action.date).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+    const updateDate = convertToTaipeiTime(action.date);
 
     const message =
       `Oh Fuck, 您被加入卡片了！
@@ -75,7 +77,7 @@ function generateAddIdentityMemberToCardMessage(action) {
  */
 function generateActivityMessage(action) {
 
-  const updateDate = new Date(action.date).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+  const updateDate = convertToTaipeiTime(action.date);
 
   const message = `Trello 卡片活動！
     標題：${action.data.card.name}
