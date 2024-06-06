@@ -11,6 +11,38 @@
 - Trello 更新追蹤
 - Discord 訊息輸出
 
+## Docker
+### 如果你想要使用 Docker 來運行這個專案，你可以遵循以下步驟：
+
+1. 首先，建立一個 Docker image。在專案的根目錄下運行以下命令：
+
+  ```bash
+  docker build -t trello-to-discord-app .
+  ```
+
+  這個命令會建立一個名為 `trello-to-discord-app` 的 Docker image。
+
+2. 然後，運行 Docker container。你可以使用以下命令來運行 container：
+
+  ```bash
+  docker run -d --name my-trello-app trello-to-discord-app
+  ```
+
+  這個命令會運行一個名為 `my-trello-app` 的 Docker container，並且在背景中運行。
+
+### 打包成tar
+1. 透過image打包成 `tar file`
+
+  ```bash
+  docker save -o trello-to-discord-app.tar trello-to-discord-app
+  ```
+
+  這個命令會建立一個名為 `trello-to-discord-app` 的 tar file by Docker image name `trello-to-discord-app`。
+
+
+
+
+
 <!-- ## 安裝
 
 說明如何安裝和設定你的專案。
