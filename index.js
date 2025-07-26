@@ -5,6 +5,7 @@ dotenv.config();
 
 import { getTrelloActionMessage } from './service/messageService.js';
 
+
 // 從環境變數中讀 API 金鑰、Token 等敏感信息
 const {
   TRELLO_API_KEY,
